@@ -1,89 +1,87 @@
 import * as d from './index'
 import deepFreeze from 'deep-freeze'
 
-describe('mergeIn', () => {
+describe('merge', () => {
   it('replaces merges into existing values', () => {
     let o = deepFreeze({a: 1, b: 2, c: { d: 3, e: 4 }})
-    let result = d.mergeIn(o, ["c"], { e: 5 })
+    let result = d.merge(o, ["c"], { e: 5 })
 
     expect(result).toEqual({a: 1, b: 2, c: { d: 3, e: 5 }})
   })
 })
 
-describe('popIn', () => {
+describe('pop', () => {
   it('adds to the beginning of the array', () => {
     let o = deepFreeze({a: 1, b: 2, c: [3, 4]})
-    let result = d.popIn(o, ["c"])
-
-    console.log([3, 4].slice(0, -1))
+    let result = d.pop(o, ["c"])
 
     expect(result).toEqual({a: 1, b: 2, c: [3]})
   })
 })
 
-describe('pushIn', () => {
+describe('push', () => {
   it('adds to the end of the array', () => {
     let o = deepFreeze({a: 1, b: 2, c: [3, 4]})
-    let result = d.pushIn(o, ["c"], 5)
+    let result = d.push(o, ["c"], 5)
 
     expect(result).toEqual({a: 1, b: 2, c: [3, 4, 5]})
   })
 })
 
-describe('setIn', () => {
+describe('set', () => {
   it('replaces an existing value', () => {
     let o = deepFreeze({a: 1, b: 2, c: 3})
-    let result = d.setIn(o, ["b"], 4)
+    let result = d.set(o, ["b"], 4)
 
     expect(result).toEqual({a: 1, b: 4, c: 3})
   })
 })
 
-describe('shiftIn', () => {
+describe('shift', () => {
   it('adds to the end of the array', () => {
     let o = deepFreeze({a: 1, b: 2, c: [3, 4]})
-    let result = d.shiftIn(o, ["c"])
+    let result = d.shift(o, ["c"])
 
     expect(result).toEqual({a: 1, b: 2, c: [4]})
   })
 })
 
-describe('sliceIn', () => {
+describe('slice', () => {
   it('supports no arguments', () => {
     let o = deepFreeze({a: 1, b: 2, c: [3, 4]})
-    let result = d.sliceIn(o, ["c"])
+    let result = d.slice(o, ["c"])
 
     expect(result).toEqual({a: 1, b: 2, c: [3, 4]})
   })
 
   it('supports one argument', () => {
     let o = deepFreeze({a: 1, b: 2, c: [3, 4]})
-    let result = d.sliceIn(o, ["c"], 1)
+    let result = d.slice(o, ["c"], 1)
 
     expect(result).toEqual({a: 1, b: 2, c: [4]})
   })
 
   it('supports two arguments', () => {
     let o = deepFreeze({a: 1, b: 2, c: [3, 4]})
-    let result = d.sliceIn(o, ["c"], 0, 1)
+    let result = d.slice(o, ["c"], 0, 1)
 
     expect(result).toEqual({a: 1, b: 2, c: [3]})
   })
 })
 
-describe('unshiftIn', () => {
+describe('unshift', () => {
   it('adds to the beginning of the array', () => {
     let o = deepFreeze({a: 1, b: 2, c: [3, 4]})
-    let result = d.unshiftIn(o, ["c"], 5)
+    let result = d.unshift(o, ["c"], 5)
 
     expect(result).toEqual({a: 1, b: 2, c: [5, 3, 4]})
   })
 })
 
-describe('updateIn', () => {
+describe('update', () => {
   it('replaces an existing value', () => {
     let o = deepFreeze({a: 1, b: 2, c: 3})
-    let result = d.updateIn(o, ["b"], t => 4)
+    let result = d.update(o, ["b"], t => 4)
 
     expect(result).toEqual({a: 1, b: 4, c: 3})
   })
