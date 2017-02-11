@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export function set(coll, key, value) {
+function set(coll, key, value) {
   return {
     ...coll,
     [key]: value
