@@ -1,0 +1,8 @@
+{
+  "name": "dig-deep",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mateomurphy/dig-deep",
+  "author": "Mateo Murphy <mateo.murphy@gmail.com>",
+  "license": "MIT"
+}
