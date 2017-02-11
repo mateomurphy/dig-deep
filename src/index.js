@@ -36,7 +36,7 @@ export function set(coll, path, value) {
   return update(coll, path, (target) => value)
 }
 
-export function shift(coll, path, value) {
+export function shift(coll, path) {
   return update(coll, path, (target) => target.slice(1))
 }
 
