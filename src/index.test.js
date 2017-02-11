@@ -35,6 +35,17 @@ describe('set', () => {
 
     expect(result).toEqual({a: 1, b: 4, c: 3})
   })
+
+  describe('with object path', () => {
+    it('it replaces an existing value', () => {
+      let coll = { foo: [{ bar: 1, baz: 2 }, { bar: 3, baz: 4 }]}
+      let path = ['foo', { bar: 1 }, 'baz']
+
+      let result = d.set(coll, path, 5)
+
+      expect(result).toEqual({ foo: [{ bar: 1, baz: 5 }, { bar: 3, baz: 4 }]})
+    })
+  })
 })
 
 describe('shift', () => {
