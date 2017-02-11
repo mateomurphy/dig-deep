@@ -1,8 +1,41 @@
 {
   "name": "dig-deep",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "repository": "https://github.com/mateomurphy/dig-deep",
   "author": "Mateo Murphy <mateo.murphy@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "browser": "dist/dig-deep.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "dist",
+    "es",
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js dist/dig-deep.js",
+    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js dist/dig-deep.min.js",
+    "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "clean": "rimraf lib dist es",
+    "beforepublish": "npm run clean && npm run build",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-jest": "^18.0.0",
+    "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.18.0",
+    "cross-env": "^3.1.4",
+    "enzyme": "^2.7.0",
+    "jest": "^18.1.0",
+    "rimraf": "^2.5.4",
+    "webpack": "2.2.0-rc.4"
+  }
 }
