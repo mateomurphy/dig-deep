@@ -35,8 +35,20 @@ export function mergeIn(coll, path, value) {
   return updateIn(coll, path, (target) => Object.assign({}, target, value))
 }
 
+export function popIn(coll, path) {
+  return updateIn(coll, path, (target) => target.slice(0, -1))
+}
+
 export function setIn(coll, path, value) {
   return updateIn(coll, path, (target) => value)
+}
+
+export function shiftIn(coll, path, value) {
+  return updateIn(coll, path, (target) => target.slice(1))
+}
+
+export function sliceIn(coll, path, start = undefined, end = undefined) {
+  return updateIn(coll, path, (target) => target.slice(start, end))
 }
 
 export function pushIn(coll, path, value) {
