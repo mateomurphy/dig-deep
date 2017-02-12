@@ -1,5 +1,7 @@
 # dig-deep
 
+[![npm version](https://badge.fury.io/js/dig-deep.svg)](https://badge.fury.io/js/dig-deep)
+
 A collection of utilities for handling nested immutable structures.
 
 
