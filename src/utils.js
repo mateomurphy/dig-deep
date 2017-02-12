@@ -1,10 +1,9 @@
 import _ from 'lodash'
 
 export function set(coll, key, value) {
-  return {
-    ...coll,
-    [key]: value
-  }
+  let result = Object.assign({}, coll)
+  result[key] = value
+  return result
 }
 
 export function mapMatching(coll, match, fn) {
