@@ -1,6 +1,29 @@
 import _ from 'lodash'
 import * as utils from './utils'
 
+export function get(coll, path) {
+  if (path.length === 0) {
+    return coll
+  }
+
+  let key = path.shift()
+
+  // map with key when in object mode
+  if (typeof key === 'object') {
+    return get(_.find(coll, key), path)
+  } else {
+    return get(coll[key], path)
+  }
+}
+
+export function first(coll, path) {
+  return _.first(get(coll, path))
+}
+
+export function last(coll, path) {
+  return _.last(get(coll, path))
+}
+
 export function update(coll, path, fn) {
   if (path.length === 0) {
     return fn(coll)

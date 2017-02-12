@@ -14,14 +14,16 @@ The path is an array of strings and objects: the strings will match object keys,
     let coll = { foo: [{ bar: 1, baz: 2 }, { bar: 3, baz: 4 }]}
     let path = ['foo', { bar: 1 }, 'baz']
 
-    let result = d.set(coll, path, 5)
+    let result = set(coll, path, 5)
 
     expect(result).toEqual({ foo: [{ bar: 1, baz: 5 }, { bar: 3, baz: 4 }]})
 
 
 ## API
 
-* update
+* first
+* get
+* last
 * merge
 * pop
 * set
@@ -29,6 +31,20 @@ The path is an array of strings and objects: the strings will match object keys,
 * slice
 * push
 * unshift
+* update
+
+
+### first(coll, path)
+
+Retrieves the first value of the array contained at path.
+
+### get(coll, path)
+
+Retrieves the value at the path.
+
+### last(coll, path)
+
+Retrieves the last value of the array contained at path.
 
 ### merge(coll, path, value)
 

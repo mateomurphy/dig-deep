@@ -1,6 +1,44 @@
 import * as d from './index'
 import deepFreeze from 'deep-freeze'
 
+describe('get', () => {
+  it('retrievs an existing value', () => {
+    let o = deepFreeze({a: 1, b: 2, c: 3})
+    let result = d.get(o, ["b"])
+
+    expect(result).toEqual(2)
+  })
+
+  describe('with object path', () => {
+    it('retrieves an existing value', () => {
+      let coll = { foo: [{ bar: 1, baz: 2 }, { bar: 3, baz: 4 }]}
+      let path = ['foo', { bar: 1 }, 'baz']
+
+      let result = d.get(coll, path)
+
+      expect(result).toEqual(2)
+    })
+  })
+})
+
+describe('first', () => {
+  it('adds to the beginning of the array', () => {
+    let o = deepFreeze({a: 1, b: 2, c: [3, 4]})
+    let result = d.first(o, ["c"])
+
+    expect(result).toEqual(3)
+  })
+})
+
+describe('last', () => {
+  it('adds to the beginning of the array', () => {
+    let o = deepFreeze({a: 1, b: 2, c: [3, 4]})
+    let result = d.last(o, ["c"])
+
+    expect(result).toEqual(4)
+  })
+})
+
 describe('merge', () => {
   it('replaces merges into existing values', () => {
     let o = deepFreeze({a: 1, b: 2, c: { d: 3, e: 4 }})
