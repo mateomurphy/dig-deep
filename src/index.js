@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import * as utils from './utils'
 
 export function update(coll, path, fn) {
   if (path.length === 0) {
@@ -9,18 +10,9 @@ export function update(coll, path, fn) {
 
   // map with key when in object mode
   if (typeof key === 'object') {
-    return _.map(coll, obj => {
-      if (_.isMatch(obj, key)) {
-        return update(obj, path, fn)
-      } else {
-        return obj
-      }
-    })
+    return utils.mapMatching(coll, key, (obj) => update(obj, path, fn))
   } else {
-    return {
-      ...coll,
-      [key]: update(coll[key], path, fn)
-    }
+    return utils.set(coll, key, update(coll[key], path, fn))
   }
 }
 
